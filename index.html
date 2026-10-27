@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PawMart - Cửa hàng đồ dùng thú cưng</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ========== MÀN HÌNH CHỜ (PRELOADER) ========== -->
+    <div id="preloader">
+        <div class="preloader-logo">
+            <i class="fas fa-paw"></i>
+            <span>PawMart</span>
+        </div>
+        <div class="preloader-spinner"></div>
+    </div>
+
+    <!-- ========== TOP BAR (Thanh thông tin trên cùng) ========== -->
+    <div class="top-bar">
+        <div class="container top-bar-inner">
+            <div class="top-bar-left">
+                <span><i class="fas fa-envelope"></i> hello@pawmart.vn</span>
+                <span><i class="far fa-clock"></i> 08:00 - 22:00</span>
+            </div>
+            <div class="top-bar-right">
+                <span><i class="fas fa-phone-alt"></i> Hotline: 1900 6868</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== HEADER ========== -->
+    <header>
+        <div class="container header-top">
+            <a href="#" class="logo"><i class="fas fa-paw"></i>PawMart</a>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="header-actions">
+                <a href="javascript:void(0)" id="userIcon" title="Đăng nhập/Đăng ký">
+                    <i class="fas fa-user"></i>
+                    <span id="userNameDisplay" style="font-size: 14px; font-weight: 600; margin-left: 5px; display: none;"></span>
+                </a>
+                <a href="javascript:void(0)" id="logoutBtn" title="Đăng xuất" style="display: none; color: #ff4d4f;">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+                <a href="javascript:void(0)" id="cartIcon" title="Giỏ hàng">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+        </div>
+        <nav>
+            <div class="container">
+                <ul>
+                    <li><a href="#" class="active">Trang chủ</a></li>
+                    <li><a href="#products">Sản phẩm</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+        <div class="container">
+            <h1>Yêu thương bé cưng <br><span>đúng cách</span></h1>
+            <p>Hàng ngàn sản phẩm chính hãng cho chó, mèo và thú nhỏ. Giao hàng toàn quốc, freeship đơn từ 500k.</p>
+            <a href="#products" class="btn">Mua sắm ngay <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- ========== KHU VỰC SẢN PHẨM (CÓ SIDEBAR) ========== -->
+    <section class="container section-layout" id="products">
+        
+        <!-- CỘT TRÁI: DANH MỤC -->
+        <aside class="sidebar">
+            <div class="sidebar-title">DANH MỤC SẢN PHẨM</div>
+            <ul class="sidebar-menu">
+                <li><a href="javascript:void(0)" onclick="filterSidebar('all')">Tất cả sản phẩm</a></li>
+                <li><a href="javascript:void(0)" onclick="filterSidebar('food')">Thức ăn & Pate</a></li>
+                <li><a href="javascript:void(0)" onclick="filterSidebar('accessory')">Phụ kiện & Đồ chơi</a></li>
+                <li><a href="javascript:void(0)" onclick="filterSidebar('dog')">Dành cho Chó</a></li>
+                <li><a href="javascript:void(0)" onclick="filterSidebar('cat')">Dành cho Mèo</a></li>
+            </ul>
+        </aside>
+
+        <!-- CỘT PHẢI: SẢN PHẨM -->
+        <div class="main-content">
+            <div class="section-title" style="text-align: left; margin-bottom: 20px;">
+                <h2 id="categoryTitle">Tất cả sản phẩm</h2>
+            </div>
+
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all">Tất cả</button>
+                <button class="filter-btn" data-filter="dog">Chó</button>
+                <button class="filter-btn" data-filter="cat">Mèo</button>
+                <button class="filter-btn" data-filter="food">Thức ăn</button>
+                <button class="filter-btn" data-filter="accessory">Phụ kiện</button>
+            </div>
+
+            <div class="product-grid" id="productGrid"></div>
+        </div>
+    </section>
+
+    <!-- ========== BLOG ========== -->
+    <section class="container" id="blog">
+        <div class="section-title">
+            <h2>Góc kiến thức</h2>
+            <p>Mẹo chăm sóc thú cưng từ chuyên gia</p>
+        </div>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="blog-img"><img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&q=80" alt="Blog 1"></div>
+                <div class="blog-content">
+                    <div class="blog-date"><i class="far fa-calendar"></i> 20/10/2024</div>
+                    <h3 class="blog-title">Cách chọn thức ăn phù hợp cho chó cưng</h3>
+                    <p class="blog-excerpt">Chế độ dinh dưỡng ảnh hưởng trực tiếp đến sức khỏe và tuổi thọ của chó...</p>
+                    <a href="javascript:void(0)" class="read-more" onclick="openBlog('blog1')">Đọc tiếp <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-img"><img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&q=80" alt="Blog 2"></div>
+                <div class="blog-content">
+                    <div class="blog-date"><i class="far fa-calendar"></i> 15/10/2024</div>
+                    <h3 class="blog-title">5 mẹo vệ sinh khay cát mèo đúng cách</h3>
+                    <p class="blog-excerpt">Giữ khay cát sạch sẽ giúp mèo thoải mái và tránh bệnh đường tiết niệu...</p>
+                    <a href="javascript:void(0)" class="read-more" onclick="openBlog('blog2')">Đọc tiếp <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-img"><img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=600&q=80" alt="Blog 3"></div>
+                <div class="blog-content">
+                    <div class="blog-date"><i class="far fa-calendar"></i> 10/10/2024</div>
+                    <h3 class="blog-title">Hướng dẫn chọn size quần áo cho thú cưng</h3>
+                    <p class="blog-excerpt">Đo đạc chính xác để chọn được bộ đồ vừa vặn và thoải mái cho bé...</p>
+                    <a href="javascript:void(0)" class="read-more" onclick="openBlog('blog3')">Đọc tiếp <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4><i class="fas fa-paw"></i> PawMart</h4>
+                    <p>Cửa hàng đồ dùng thú cưng chính hãng, giao hàng toàn quốc.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Liên kết</h4>
+                    <a href="#">Trang chủ</a>
+                    <a href="#products">Sản phẩm</a>
+                    <a href="#blog">Blog</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Hỗ trợ</h4>
+                    <a href="javascript:void(0)" onclick="openPolicy('return')">Chính sách đổi trả</a>
+                    <a href="javascript:void(0)" onclick="openPolicy('shipping')">Phí vận chuyển</a>
+                    <a href="javascript:void(0)" onclick="openPolicy('faq')">Câu hỏi thường gặp</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Liên hệ</h4>
+                    <p><i class="fas fa-phone"></i> 1900 6868</p>
+                    <p><i class="fas fa-envelope"></i> hello@pawmart.vn</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2024 PawMart. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== MODAL GIỎ HÀNG ========== -->
+    <div class="modal-overlay" id="cartModal">
+        <div class="modal-content cart-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-shopping-bag"></i> Giỏ hàng của bạn</h3>
+                <button class="close-modal" onclick="closeModal('cartModal')">&times;</button>
+            </div>
+            <div id="cartItemsContainer" style="flex: 1; overflow-y: auto;"></div>
+            <div class="cart-total">
+                <span>Tổng cộng:</span>
+                <span id="cartTotalPrice">0đ</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Thanh toán ngay <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <!-- ========== MODAL ĐĂNG NHẬP / ĐĂNG KÝ ========== -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-content auth-content">
+            <button class="close-modal" onclick="closeModal('authModal')">&times;</button>
+            <h2 id="authTitle">Đăng nhập</h2>
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="tabLogin" onclick="switchAuthTab('login')">Đăng nhập</button>
+                <button class="auth-tab" id="tabRegister" onclick="switchAuthTab('register')">Đăng ký</button>
+            </div>
+            <form id="loginForm" class="auth-form active">
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Mật khẩu" required>
+                <button type="submit" class="btn-submit">Đăng nhập</button>
+            </form>
+            <form id="registerForm" class="auth-form">
+                <input type="text" id="regName" placeholder="Họ và tên" required>
+                <input type="email" id="regEmail" placeholder="Email" required>
+                <input type="password" id="regPassword" placeholder="Mật khẩu" required>
+                <button type="submit" class="btn-submit">Tạo tài khoản</button>
+            </form>
+            <p style="text-align:center; margin-top: 15px; font-size: 13px; color: #666;">
+                <i>Tài khoản Demo: <b>admin@pawmart.vn</b> / <b>123456</b></i>
+            </p>
+        </div>
+    </div>
+
+    <!-- ========== MODAL CHÍNH SÁCH HỖ TRỢ ========== -->
+    <div class="modal-overlay" id="policyModal">
+        <div class="modal-content policy-content">
+            <button class="close-modal" onclick="closeModal('policyModal')">&times;</button>
+            <h2 id="policyTitle" style="text-align: center; margin-bottom: 20px; color: var(--primary);">Tiêu đề</h2>
+            <div id="policyBody" class="policy-body"></div>
+        </div>
+    </div>
+
+    <!-- ========== MODAL BLOG ========== -->
+    <div class="modal-overlay" id="blogModal">
+        <div class="modal-content blog-modal-content">
+            <button class="close-modal" onclick="closeModal('blogModal')">&times;</button>
+            <img id="blogModalImg" src="" alt="Blog Image" style="width: 100%; height: 250px; object-fit: cover; border-radius: 12px; margin-bottom: 20px;">
+            <h2 id="blogModalTitle" style="color: var(--primary); margin-bottom: 10px; font-size: 24px;"></h2>
+            <p id="blogModalDate" style="font-size: 14px; color: var(--text-light); margin-bottom: 20px;"></p>
+            <div id="blogModalBody" class="blog-modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
